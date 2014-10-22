@@ -8,6 +8,7 @@
 \LoadClassWithOptions{report}
 
 \RequirePackage[left=1.5in,right=1in,top=1in,bottom=1in,footskip=0.5in]{geometry}
+\RequirePackage[bookmarks,bookmarksopen]{hyperref}
 %\RequirePackage{tocloft}
 
 
@@ -156,6 +157,7 @@
 
 \newcommand\@makeacknowledgements{
   \if@acknowledgements%
+  \phantomsection
   \addcontentsline{toc}{chapter}{Acknowledgements}
   \null
   \begin{center}
@@ -187,9 +189,11 @@
   \@makeacknowledgements
   \tableofcontents
   \clearpage 
+  \phantomsection
   \addcontentsline{toc}{chapter}{List of Tables}
   \listoftables
   \clearpage
+  \phantomsection
   \addcontentsline{toc}{chapter}{List of Figures}
   \listoffigures
   \clearpage

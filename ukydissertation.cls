@@ -8,7 +8,7 @@
 \LoadClassWithOptions{report}
 
 \RequirePackage[left=1.5in,right=1in,top=1in,bottom=1in,footskip=0.5in]{geometry}
-\RequirePackage[bookmarks,bookmarksopen]{hyperref}
+\RequirePackage[bookmarks=true,bookmarksopen=true,bookmarksopenlevel=0]{hyperref}
 \RequirePackage{bookmark}
 %\RequirePackage{tocloft}
 
@@ -20,14 +20,13 @@
 \def\@director{\@latex@warning@no@line{No \noexpand\director given}}
 \def\dgs#1{\gdef\@dgs{#1}}  
 \def\@dgs{\@latex@warning@no@line{No \noexpand\dgs given}}
-\def\department#1{\gdef\@department{#1}}  
+\def\department#1{\gdef\@department{#1}}
 \def\@department{\@latex@warning@no@line{No \noexpand\department given}}
-\def\keywords#1{\gdef\@keywords{#1}}  
+\def\keywords#1{\gdef\@keywords{#1}}
 \def\@keywords{\@latex@warning@no@line{No \noexpand\keywords given}}
 \renewcommand\abstract[1]{\renewcommand\@abstract{#1}}
 \newcommand\@abstract{\@latex@warning@no@line{No \noexpand\abstract given}}
-
-
+\newcommand\vita{\clearpage\chapter*{Vita}\addcontentsline{toc}{chapter}{Vita}}
 
 \def\@makechapterhead#1{%
   %\vspace*{50\p@}%
@@ -199,11 +198,11 @@
   \tableofcontents
   \clearpage 
   \phantomsection
-  \addcontentsline{toc}{section}{List of Tables}
+  \addcontentsline{toc}{chapter}{List of Tables}
   \listoftables
   \clearpage
   \phantomsection
-  \addcontentsline{toc}{section}{List of Figures}
+  \addcontentsline{toc}{chapter}{List of Figures}
   \listoffigures
   \clearpage
   \pagenumbering{arabic}

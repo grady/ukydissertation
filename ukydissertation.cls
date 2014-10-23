@@ -9,6 +9,7 @@
 
 \RequirePackage[left=1.5in,right=1in,top=1in,bottom=1in,footskip=0.5in]{geometry}
 \RequirePackage[bookmarks,bookmarksopen]{hyperref}
+\RequirePackage{bookmark}
 %\RequirePackage{tocloft}
 
 
@@ -56,8 +57,8 @@
   \let\footnoterule\relax
   \let\footnote\thanks
   \null
+  \bookmark[named=FirstPage,level=-1]{Title Page}
   \vskip 1.5in%
-
   \begin{center}%  
   \parbox[t][1.5in]{\textwidth}{\centering\MakeUppercase\@title\par}%
   \par
@@ -88,6 +89,8 @@
 
 \newcommand\@makeabstract{%
 \titlepage
+\hypertarget{abstract}{}
+\bookmark[dest=abstract,level=0]{Abstract}
 \null\vskip 1.5in
 \begin{center}%
   \parbox[t][1in]{\textwidth}{\centering ABSTRACT OF DISSERTATION\par}
@@ -114,7 +117,8 @@
   \par\vfil\null\endtitlepage\clearpage}
 
 \newcommand\@makeapproval{
-  \titlepage\null\vskip 2in
+  \thispagestyle{empty}
+  \null\vskip 2in
   \noindent\parbox[t][1in]{\textwidth}{\centering\MakeUppercase\@title\par}\par
   \begin{centering}
     By
@@ -143,7 +147,7 @@
     \hrule
   \vskip 2pt
   Date\par}\hskip 1in
-    \par\vfil\endtitlepage\clearpage}
+    \par\vfil\clearpage}
 
 
 \newif\if@dedication
@@ -175,26 +179,31 @@
 
 \newcommand\@makededication{%
   \if@dedication
-  \titlepage\null\vfil
+  %\titlepage%
+\null\vfil
   \@dedication
-  \par\vfil\endtitlepage\clearpage\fi}
+  \par\vfil%\endtitlepage
+  \clearpage\fi}
 
 \newcommand\makefrontmatter{%
+  \pagenumbering{Roman}
   \maketitle
   \@makeabstract
+  \pagenumbering{roman}
+  \setcounter{page}{1}
   \@makeapproval
   \@makededication
-  \pagenumbering{roman}
-  \setcounter{page}{3}
   \@makeacknowledgements
+  \clearpage
+  \hypertarget{tocpage}{}\bookmark[dest=tocpage]{Table of Contents}
   \tableofcontents
   \clearpage 
   \phantomsection
-  \addcontentsline{toc}{chapter}{List of Tables}
+  \addcontentsline{toc}{section}{List of Tables}
   \listoftables
   \clearpage
   \phantomsection
-  \addcontentsline{toc}{chapter}{List of Figures}
+  \addcontentsline{toc}{section}{List of Figures}
   \listoffigures
   \clearpage
   \pagenumbering{arabic}

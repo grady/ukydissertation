@@ -177,21 +177,20 @@
 \@mainmatterfalse
 
 \newcommand\@makededication{%
-  \if@dedication
-  %\titlepage%
+  \if@dedication\titlepage%
 \null\vfil
   \@dedication
-  \par\vfil%\endtitlepage
+  \par\vfil\endtitlepage
   \clearpage\fi}
 
 \newcommand\makefrontmatter{%
   \pagenumbering{Roman}
   \maketitle
   \@makeabstract
-  \pagenumbering{roman}
-  \setcounter{page}{1}
   \@makeapproval
   \@makededication
+  \pagenumbering{roman}
+  \setcounter{page}{3}
   \@makeacknowledgements
   \clearpage
   \hypertarget{tocpage}{}\bookmark[dest=tocpage]{Table of Contents}

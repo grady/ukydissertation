@@ -185,11 +185,13 @@
 
 \newcommand\makefrontmatter{%
   \pagenumbering{Roman}
+  \pagestyle{empty}
   \maketitle
   \@makeabstract
   \@makeapproval
   \@makededication
   \pagenumbering{roman}
+  \pagestyle{plain}
   \setcounter{page}{3}
   \@makeacknowledgements
   \clearpage

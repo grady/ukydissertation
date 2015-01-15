@@ -15,7 +15,7 @@
 
 
 \def\college#1{\gdef\@college{#1}}  
-\def\@college{\@latex@warning@no@line{No \noexpand\college given}}
+\def\@college{\@latex@warning@no@line{No \noexpand\college given} COLLEGE}
 \def\director#1{\gdef\@director{#1}}  
 \def\@director{\@latex@warning@no@line{No \noexpand\director given}}
 \def\dgs#1{\gdef\@dgs{#1}}  
@@ -51,8 +51,10 @@
   }}
 
 
-\renewcommand\maketitle{\begin{titlepage}%
-  \let\footnotesize\small
+\renewcommand\maketitle{%
+  \setcounter{page}{-1}
+  \pagestyle{empty}
+  {\let\footnotesize\small
   \let\footnoterule\relax
   \let\footnote\thanks
   \null
@@ -80,15 +82,15 @@
     {Copyright \textcopyright\ \@author\ \the\year\par}%
     \vspace*{1.5in}\par
   \end{center}\par
-  \null
-  \end{titlepage}%
+  \null}
   \clearpage
   \setcounter{footnote}{0}%
 }
 
 \newcommand\@makeabstract{%
-\titlepage
-\hypertarget{abstract}{}
+  \pagestyle{empty}
+  \pagenumbering{Roman}
+  \hypertarget{abstract}{}
 \bookmark[dest=abstract,level=0]{Abstract}
 \null\vskip 1.5in
 \begin{center}%
@@ -113,10 +115,10 @@
     \hrule
   \vskip 2pt
   Date\par}
-  \par\vfil\null\endtitlepage\clearpage}
+  \par\vfil\null\clearpage}
 
 \newcommand\@makeapproval{
-  \thispagestyle{empty}
+  \pagenumbering{roman}
   \null\vskip 2in
   \noindent\parbox[t][1in]{\textwidth}{\centering\MakeUppercase\@title\par}\par
   \begin{centering}
@@ -159,6 +161,8 @@
   \gdef\@acknowledgements{#1}}
 
 \newcommand\@makeacknowledgements{
+  \setcounter{page}{3}
+  \pagestyle{plain}
   \if@acknowledgements%
   \phantomsection
   \addcontentsline{toc}{chapter}{Acknowledgements}
@@ -170,29 +174,21 @@
   \@acknowledgements
   \par\vfil\clearpage\fi}
 
-%\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
-
-
 \newif\if@mainmatter
 \@mainmatterfalse
 
 \newcommand\@makededication{%
-  \if@dedication\titlepage%
+  \if@dedication
 \null\vfil
   \@dedication
-  \par\vfil\endtitlepage
+  \par\vfil
   \clearpage\fi}
 
 \newcommand\makefrontmatter{%
-  \pagenumbering{Roman}
-  \pagestyle{empty}
   \maketitle
   \@makeabstract
   \@makeapproval
   \@makededication
-  \pagenumbering{roman}
-  \pagestyle{plain}
-  \setcounter{page}{3}
   \@makeacknowledgements
   \clearpage
   \hypertarget{tocpage}{}\bookmark[dest=tocpage]{Table of Contents}
@@ -207,7 +203,6 @@
   \listoffigures
   \clearpage
   \pagenumbering{arabic}
-  \setcounter{page}{1}
   \global\let\thanks\relax
   \global\let\maketitle\relax
   \global\let\title\relax

@@ -6,3 +6,6 @@ Kentucky.
 
 Place the *ukydissertation.cls* file in the same directory as your
 *tex* file and use `\documentclass{dissertationuky}`.
+
+The *test.tex* file contains a small example/demonstration, and is
+also suitable for use as an initial template.

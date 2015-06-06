@@ -1,0 +1,86 @@
+\documentclass[endorse]{ukydissertation}
+%\usepackage{natbib}
+\usepackage{lipsum}
+
+%% hyperref/bookmark should be loaded last....
+\usepackage[numbered]{bookmark}
+\hypersetup{bookmarksopen=true,bookmarksopenlevel=0}
+
+
+\title{ukydissertation.cls\protect\\%
+  A \LaTeX\ class for typsetting a dissertation\protect\\%
+  to the formatting requirements for\protect\\%
+  the University of Kentucky%
+}
+\author{Grady Weyenberg}
+\department{Statistics}
+\college{College of Arts and Sciences}
+\director{Jane Q. Advisor}
+\dgs{Charles Xavier}
+\keywords{THERE ARE FIVE KEYWORDS SUPERCALAFRAGELISTICEXPIALIDOCIOUS}
+\abstract{\lipsum}
+\dedication{Dedicated to things.}
+\acknowledgements{\lipsum[1]}
+
+\begin{document}
+
+%% Generate title, abstract, TOC, etc.
+\makefrontmatter
+
+\chapter{The First Chapter}
+\label{cha:first-chapter}
+\lipsum*[1]\cite{lamport94}
+
+\begin{figure}
+  \centering
+  The First Figure
+  \caption[A name for the ToC]{A caption for the first figure.}
+  \label{fig:numberone}
+\end{figure}
+\section{The First Section}
+\label{sec:first-section}
+\lipsum[2]
+\subsection{The first subsection.}
+\label{sec:first-subsection}
+\lipsum[3]
+\subsubsection{A subsubsection}
+\lipsum[4-10]
+\chapter{The Second Chapter}
+\label{cha:second-chapter}
+\lipsum[11-15]
+\begin{table}
+  \centering
+  \begin{tabular}{ccc}
+    1&2&3\\4&5&5\\
+  \end{tabular}
+  \caption[The first table shortname]{The First table long caption}
+  \label{tab:numberone}
+\end{table}
+\lipsum[16-20]
+\backmatter
+
+\chapter{The First Appendix}
+\label{cha:first-appendix}
+\lipsum[21-23]
+\section{First Apppendix section}
+\label{sec:first-appp-sect}
+\lipsum[24-29]
+
+\clearpage
+\phantomsection 
+% \bibliographystyle{named}
+% \bibliography{bibfile}
+\addcontentsline{toc}{chapter}{Bibliography}
+
+%% Example bibliography, delete if using (e.g.) BibTex.
+\begin{thebibliography}{9}
+\bibitem{lamport94}
+  Leslie Lamport.
+  \emph{\LaTeX: a document preparation system}.
+  Addison Wesley, Massachusetts, 2nd edition, 1994.
+\end{thebibliography}
+%% End Bibliography
+
+\vita
+\lipsum[30-33]
+\end{document}

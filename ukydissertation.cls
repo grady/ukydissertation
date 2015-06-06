@@ -3,16 +3,13 @@
 \newif\if@endorse
 \DeclareOption{endorse}{\@endorsetrue}
 \DeclareOption{noendorse}{\@endorsefalse}
-\ExecuteOptions{noendorse, 12pt}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
+\ExecuteOptions{noendorse, 12pt, letterpaper}
 \ProcessOptions
-\LoadClassWithOptions{report}
+\LoadClass{report}
 
 \RequirePackage[left=1.5in,right=1in,top=1in,bottom=1in,footskip=0.5in]{geometry}
-\RequirePackage[bookmarks=true,bookmarksopen=true,bookmarksopenlevel=0]{hyperref}
-\RequirePackage{bookmark}
-%\RequirePackage{tocloft}
-
-
+\RequirePackage{needspace}
 
 \def\college#1{\gdef\@college{#1}}  
 \def\@college{\@latex@warning@no@line{No \noexpand\college given} COLLEGE}
@@ -100,7 +97,7 @@
 \@abstract
 \par\vspace\baselineskip\noindent 
   KEYWORDS: \parbox[t]{0.8\textwidth}{\@keywords}
-  \par\vfill
+  \par\needspace{1.5in}\null\vfill
   \hfill\parbox[t][1.5in]{0.5\textwidth}{%
     \if@endorse
     {\centering\MakeUppercase\@author\par}\vskip 2pt
@@ -115,7 +112,7 @@
     \hrule
   \vskip 2pt
   Date\par}
-  \par\vfil\null\clearpage}
+  \par\null\clearpage}
 
 \newcommand\@makeapproval{
   \pagenumbering{roman}

@@ -1,23 +1,23 @@
 \documentclass[endorse]{ukydissertation}
-%\usepackage{natbib}
+
+\usepackage{natbib}
 \usepackage{lipsum}
+%% bookmark needs to be setup last
+\usepackage[numbered,open,openlevel=0]{bookmark}
 
-%% hyperref/bookmark should be loaded last....
-\usepackage[numbered]{bookmark}
-\hypersetup{bookmarksopen=true,bookmarksopenlevel=0}
+\bibliographystyle{plainnat}
 
-
+%% Define document metadata
 \title{ukydissertation.cls\protect\\%
   A \LaTeX\ class for typsetting a dissertation\protect\\%
   to the formatting requirements for\protect\\%
-  the University of Kentucky%
-}
+  the University of Kentucky}
 \author{Grady Weyenberg}
 \department{Statistics}
 \college{College of Arts and Sciences}
 \director{Jane Q. Advisor}
 \dgs{Charles Xavier}
-\keywords{THERE ARE FIVE KEYWORDS SUPERCALAFRAGELISTICEXPIALIDOCIOUS}
+\keywords{THERE, ARE, FIVE, KEY, WORDS}
 \abstract{\lipsum}
 \dedication{Dedicated to things.}
 \acknowledgements{\lipsum[1]}
@@ -29,7 +29,7 @@
 
 \chapter{The First Chapter}
 \label{cha:first-chapter}
-\lipsum*[1]\cite{lamport94}
+\lipsum*[1]\citep{lamport1994latex}
 
 \begin{figure}
   \centering
@@ -49,12 +49,17 @@
 \label{cha:second-chapter}
 \lipsum[11-15]
 \begin{table}
-  \centering
-  \begin{tabular}{ccc}
-    1&2&3\\4&5&5\\
-  \end{tabular}
   \caption[The first table shortname]{The First table long caption}
   \label{tab:numberone}
+  \centering
+  \begin{tabular}{ccc}
+    \hline
+    a&b&c\\
+    \hline
+    1&2&3\\
+    4&5&5\\
+    \hline
+  \end{tabular}
 \end{table}
 \lipsum[16-20]
 \backmatter
@@ -62,24 +67,12 @@
 \chapter{The First Appendix}
 \label{cha:first-appendix}
 \lipsum[21-23]
+
 \section{First Apppendix section}
 \label{sec:first-appp-sect}
 \lipsum[24-29]
 
-\clearpage
-\phantomsection 
-% \bibliographystyle{named}
-% \bibliography{bibfile}
-\addcontentsline{toc}{chapter}{Bibliography}
-
-%% Example bibliography, delete if using (e.g.) BibTex.
-\begin{thebibliography}{9}
-\bibitem{lamport94}
-  Leslie Lamport.
-  \emph{\LaTeX: a document preparation system}.
-  Addison Wesley, Massachusetts, 2nd edition, 1994.
-\end{thebibliography}
-%% End Bibliography
+\bibliography{example}
 
 \vita
 \lipsum[30-33]

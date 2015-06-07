@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ukydissertation}[2011/01/30 v0.1 UKY Dissertation Class]
+\ProvidesClass{ukydissertation}[2011/01/30 v0.2 UKY Dissertation Class]
 \newif\if@endorse
 \DeclareOption{endorse}{\@endorsetrue}
 \DeclareOption{noendorse}{\@endorsefalse}
@@ -9,24 +9,34 @@
 \LoadClass{report}
 
 \RequirePackage[left=1.5in,right=1in,top=1in,bottom=1in,footskip=0.5in]{geometry}
+\RequirePackage[nottoc]{tocbibind}
 \RequirePackage{needspace}
 
-\def\college#1{\gdef\@college{#1}}  
-\def\@college{\@latex@warning@no@line{No \noexpand\college given} COLLEGE}
-\def\director#1{\gdef\@director{#1}}  
-\def\@director{\@latex@warning@no@line{No \noexpand\director given}}
-\def\dgs#1{\gdef\@dgs{#1}}  
-\def\@dgs{\@latex@warning@no@line{No \noexpand\dgs given}}
-\def\department#1{\gdef\@department{#1}}
-\def\@department{\@latex@warning@no@line{No \noexpand\department given}}
-\def\keywords#1{\gdef\@keywords{#1}}
-\def\@keywords{\@latex@warning@no@line{No \noexpand\keywords given}}
-\renewcommand\abstract[1]{\renewcommand\@abstract{#1}}
-\newcommand\@abstract{\@latex@warning@no@line{No \noexpand\abstract given}}
-\newcommand\vita{\clearpage\chapter*{Vita}\addcontentsline{toc}{chapter}{Vita}}
+\newcommand{\college}[1]{\renewcommand{\@college}{#1}}
+\newcommand{\@college}{\@latex@warning@no@line%
+  {No \noexpand\college given} COLLEGE}
 
-\def\@makechapterhead#1{%
-  %\vspace*{50\p@}%
+\newcommand{\director}[1]{\renewcommand{\@director}{#1}}
+\newcommand{\@director}{\@latex@warning@no@line%
+  {No \noexpand\director given} Advisor}
+
+\newcommand{\dgs}[1]{\renewcommand{\@dgs}{#1}}
+\newcommand{\@dgs}{\@latex@warning@no@line%
+  {No \noexpand\dgs given} DGS}
+
+\newcommand{\department}[1]{\renewcommand{\@department}{#1}}
+\newcommand{\@department}{\@latex@warning@no@line%
+  {No \noexpand\department given} DEPARTMENT} 
+
+\newcommand{\keywords}[1]{\renewcommand{\@keywords}{#1}}
+\newcommand{\@keywords}{\@latex@warning@no@line{No \noexpand\keywords given}}
+
+\renewcommand{\abstract}[1]{\renewcommand\@abstract{#1}}
+\newcommand{\@abstract}{\@latex@warning@no@line%
+  {No \noexpand\abstract given}}
+\newcommand{\vita}{\clearpage\chapter*{Vita}\addcontentsline{toc}{chapter}{Vita}}
+
+\renewcommand{\@makechapterhead}[1]{%
   {\parindent \z@ \centering \normalfont
     \ifnum \c@secnumdepth >\m@ne
     \bfseries \@chapapp\space \thechapter
@@ -38,15 +48,13 @@
     \vskip 20\p@
   }}
 
-\def\@makeschapterhead#1{%
-  %\vspace*{50\p@}%
+\renewcommand{\@makeschapterhead}[1]{%
   {\parindent \z@ \raggedright
     \normalfont
     \interlinepenalty\@M
     \centering\bfseries  #1\par\nobreak
     \vskip 20\p@
   }}
-
 
 \renewcommand\maketitle{%
   \setcounter{page}{-1}
@@ -147,15 +155,17 @@
   Date\par}\hskip 1in
     \par\vfil\clearpage}
 
-
 \newif\if@dedication
 \@dedicationfalse
 \newif\if@acknowledgements
 \@acknowledgementsfalse
+\newif\if@mainmatter
+\@mainmatterfalse
 
-\newcommand\dedication[1]{\@dedicationtrue\gdef\@dedication{#1}}
-\newcommand\acknowledgements[1]{\@acknowledgementstrue
-  \gdef\@acknowledgements{#1}}
+\newcommand{\dedication}[1]{\@dedicationtrue
+  \newcommand{\@dedication}{#1}}
+\newcommand{\acknowledgements}[1]{\@acknowledgementstrue
+  \newcommand{\@acknowledgements}{#1}}
 
 \newcommand\@makeacknowledgements{
   \setcounter{page}{3}
@@ -164,15 +174,10 @@
   \phantomsection
   \addcontentsline{toc}{chapter}{Acknowledgements}
   \null
-  \begin{center}
-    ACKNOWLEDGEMENTS
-  \end{center}
-  \par\noindent
+  {\centering ACKNOWLEDGEMENTS \par}
+  \vspace{\baselineskip}\noindent
   \@acknowledgements
   \par\vfil\clearpage\fi}
-
-\newif\if@mainmatter
-\@mainmatterfalse
 
 \newcommand\@makededication{%
   \if@dedication
@@ -181,6 +186,8 @@
   \par\vfil
   \clearpage\fi}
 
+\renewcommand{\contentsname}{Table of Contents}
+
 \newcommand\makefrontmatter{%
   \maketitle
   \@makeabstract
@@ -188,15 +195,9 @@
   \@makededication
   \@makeacknowledgements
   \clearpage
-  \hypertarget{tocpage}{}\bookmark[dest=tocpage]{Table of Contents}
+  \pdfbookmark[chapter]{\contentsname}{toc}
   \tableofcontents
-  \clearpage 
-  \phantomsection
-  \addcontentsline{toc}{chapter}{List of Tables}
   \listoftables
-  \clearpage
-  \phantomsection
-  \addcontentsline{toc}{chapter}{List of Figures}
   \listoffigures
   \clearpage
   \pagenumbering{arabic}
@@ -210,19 +211,21 @@
   \global\let\dedication\relax
 }
 
-\newcommand\backmatter{\@mainmatterfalse\appendix}
+\newcommand{\backmatter}{\@mainmatterfalse\appendix}
 
+\newcommand{\@period}[1]{#1.--- }
 
-\newcommand\@period[1]{#1.--- }
-\renewcommand\section{\@startsection {section}{1}{\z@}%
+\renewcommand{\section}{\@startsection {section}{1}{\z@}%
                                    {-3.5ex \@plus -1ex \@minus -.2ex}%
                                    {2.3ex \@plus.2ex}%
                                    {\normalfont\bfseries}}
-\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
                                      {-3.25ex\@plus -1ex \@minus -.2ex}%
                                      {1.5ex \@plus .2ex}%
                                      {\normalfont\bfseries}}
-\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
                                     {3.25ex \@plus1ex \@minus.2ex}%
                                     {\z@}%
                                     {\normalfont\normalsize\itshape\@period}}

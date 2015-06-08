@@ -113,7 +113,7 @@
   {\normalfont\normalsize\itshape\@period}}
 
 \renewcommand\maketitle{%
-  \setcounter{page}{-1}
+  \setcounter{page}{0}
   \pagestyle{empty}
   {\let\footnotesize\small
   \let\footnoterule\relax

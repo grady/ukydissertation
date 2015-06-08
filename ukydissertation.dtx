@@ -95,8 +95,8 @@
 % not want to use the \LaTeX{} default, which is |\today|.
 % \begin{quote}
 % \begin{verbatim}
-\title{On the Correlation between Piracy and Climate Change}
-\author{John Q. Doe}
+\title{A \textsf{ukydissertation} Example Document}
+\author{Jeffrey Lebowsky}
 \department{Slack}
 \college{College of Theosophy}
 \director{J.R ``Bob'' Dobbs}
@@ -157,17 +157,17 @@
   \label{fig:numberone}
 \end{figure}
 
-\section{The Nature of Piracy in the 17th Century}
+\section[A Shorter Title for ToC]
+{The First Subsection Has A Long Title}
+
 \lipsum[11]
 \begin{table}
-  \caption[The Piracy-Temperature time series]%
-  {The time series showing the correlation between the Piracy 
-    Quotient (PQ) and average global temperatures.}
-  \label{tab:numberone}
-  \centering
+  \caption[A Short Table Title for the ToC]%
+  {Tables captions should appear before the beginning of the table.}
+  \vspace{\baselineskip}\centering
   \begin{tabular}{ccc}
     \hline
-    Year & PQ & Temp\\
+    X & Y & Z\\
     \hline
     1750 & 250 & 56\\
     1760 & 218 & 57\\
@@ -234,7 +234,7 @@
 % \end{macro}
 
 % \begin{macro}{\if@dedication}
-% Swich indicating if a dedication section has been supplied.
+% Switch indicating if a dedication section has been supplied.
 %    \begin{macrocode}
 \newif\if@dedication
 \@dedicationfalse
@@ -292,7 +292,7 @@
 % \end{macro}
 %
 % \begin{macro}{\director}
-% Define the name of the comittee chair/director (your advisor).
+% Define the name of the committee chair/director (your advisor).
 %    \begin{macrocode}
   \newcommand{\director}[1]{\renewcommand{\@director}{#1}}
   \newcommand{\@director}{\@latex@warning@no@line%
@@ -328,7 +328,7 @@
 % \end{macro}
 %
 % \begin{macro}{\abstract}
-% Define the dissertatoin abstract content.
+% Define the dissertation abstract content.
 %    \begin{macrocode}
 \renewcommand{\abstract}[1]{\renewcommand\@abstract{#1}}
 \newcommand{\@abstract}{\@latex@warning@no@line%
@@ -413,7 +413,7 @@
 % dedication, acknowledgements, table of contents and list of figures/tables pages. 
 %    \begin{macrocode}
 \renewcommand\maketitle{%
-  \setcounter{page}{-1}
+  \setcounter{page}{0}
   \pagestyle{empty}
   {\let\footnotesize\small
   \let\footnoterule\relax

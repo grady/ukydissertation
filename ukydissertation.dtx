@@ -1,0 +1,545 @@
+% \iffalse meta-comment
+% Copyright (C) 2015 by Grady Weyenberg <grady.weyenberg@uky.edu>
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, either version 1.3 of this license
+% or (at your option) any later version.  The latest version of this
+% license is in http://www.latex-project.org/lppl.txt and version 1.3
+% or later is part of all distributions of LaTeX version 2005/12/01 or
+% later.  
+% \fi
+%
+% \iffalse
+%<*internal>
+\iffalse
+%</internal>
+%<*bib>
+@unpublished{ukdiss,
+	Author = {{University of Kentucky Graduate School}},
+	Title = {Electronic Dissertation Preparation Instructions},
+	Url = {http://www.gradschool.uky.edu/CurrentStudents/electronic_dissertation_instructions.html},
+	Year = {2015}}
+
+@book{latex,
+	Address = {Massachusetts},
+	Author = {Leslie Lamport},
+	Edition = {2nd},
+	Publisher = {Addison-Wesley},
+	Title = {\LaTeX : A Document Preparation System},
+	Year = {1994}}
+%</bib>
+%<*internal>
+\fi
+%</internal>
+%<*driver>
+\ProvidesFile{ukydissertation.dtx}
+%</driver>
+%<class>\NeedsTeXFormat{LaTeX2e}
+%<class>\ProvidesClass{ukydissertation}
+%<*class>
+[2015/06/05 v0.2 UKY Dissertation Class]
+%</class>
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\begin{document}
+  \DocInput{ukydissertation.dtx}
+\end{document}
+%</driver>
+%<*example>
+% \fi
+% \CheckSum{441}
+%
+% \title{The \textsf{ukydissertation} class}
+% \author{Grady Weyenberg}
+% \maketitle
+% \section{User Manual}
+% This class attempts to provide a method of formatting a dissertation
+% to the style guide for the graduate school at the University of
+% Kentucky.
+% 
+% Your \LaTeX{} file should begin with a preamble similar to this:
+% \begin{quote}
+% \begin{verbatim}
+\documentclass[endorse]{ukydissertation}
+%%%[...load your packages...]%%
+\usepackage{lipsum}
+\usepackage{natbib}
+\usepackage[numbered,open,openlevel=0]{bookmark}
+\bibliographystyle{plainnat}
+% \end{verbatim}
+% \end{quote}
+% You must manually load the |bookmark| package and set the options as
+% shown above to get the correct style for the dissertation. This is
+% not done in the class definition because you may need to load other
+% packages before loading |bookmark|.
+% 
+% The |endorse| class option causes signatures to appear in the
+% appropriate blank spaces in front matter of the
+% dissertation. This should be omitted (or replaced with the
+% |noendorse| option) until the final stage of the dissertation
+% approval process.
+%
+% \DescribeMacro\title
+% \DescribeMacro\author
+% \DescribeMacro\department
+% \DescribeMacro\college
+% \DescribeMacro\director
+% \DescribeMacro\dgs
+% \DescribeMacro\date
+% Next, use these macros define the dissertation document metadata. In
+% addition to the usual |title| and |author| macros, there are macros
+% for your |department|, |college|, thesis |director| (advisor), and
+% the director of graduate studies (|dgs|) for your department.
+% Optionally, you may supply a |date|. This is only required if you do
+% not want to use the \LaTeX{} default, which is |\today|.
+% \begin{quote}
+% \begin{verbatim}
+\title{On the Correlation between Piracy and Climate Change}
+\author{John Q. Doe}
+\department{Slack}
+\college{College of Theosophy}
+\director{J.R ``Bob'' Dobbs}
+\dgs{Constance M. Dobbs}
+\date{19 Prairial CCXXIII}
+% \end{verbatim}
+% \end{quote}
+
+% \DescribeMacro\absract
+% \DescribeMacro\dedication
+% \DescribeMacro\acknowledgements
+% \DescribeMacro\keywords
+% In addition to the basic metadata, you must also define an
+% |abstract| and |keywords|. The |dedication|, and |acknowledgements|
+% pages are optional, and will only be added if you supply
+% content. 
+% \begin{quote}
+% \begin{verbatim}
+\abstract{This is a example of the ukydissertation class. 
+  This class for the \LaTeX{} document system \citep{latex} 
+  produces a pdf file conforming to the style guidelines of
+  the \citet{ukdiss}.}
+
+\keywords{U of Kentucky, dissertation, latex, documentclass, example}
+\dedication{Dedicated to the Flying Spagetti Monster.}
+% \end{verbatim}
+% \end{quote}
+
+% \DescribeMacro\makefrontmatter 
+% The first thing in the |document| environment should be the
+% |\makefrontmatter| macro. This will use the previous definitions to
+% setup the pages prior to the start of the main dissertation
+% material. 
+% \begin{quote}
+% \begin{verbatim}
+\begin{document}
+\makefrontmatter  
+% \end{verbatim}
+% \end{quote}
+
+% \DescribeMacro\chapter
+% \DescribeMacro\section
+% \DescribeMacro\subsection
+% \DescribeMacro\subsubsection
+% You then proceed to write your dissertation using the classic
+% \LaTeX{} commands. The |chapter|, and |section| through
+% |subsubsection| environments have been defined, although a 
+% |subsubsection| will not be numbered, appear in the ToC, or be bookmarked.
+% \begin{quote}
+% \begin{verbatim}
+\chapter{The First Chapter}
+\lipsum[4-10]
+
+\begin{figure}
+  \centering
+  \framebox[3in][c]{The First Figure}
+  \caption[A name for the ToC]{A caption for the first figure.}
+  \label{fig:numberone}
+\end{figure}
+
+\section{The Nature of Piracy in the 17th Century}
+\lipsum[11]
+\begin{table}
+  \caption[The Piracy-Temperature time series]%
+  {The time series showing the correlation between the Piracy 
+    Quotient (PQ) and average global temperatures.}
+  \label{tab:numberone}
+  \centering
+  \begin{tabular}{ccc}
+    \hline
+    Year & PQ & Temp\\
+    \hline
+    1750 & 250 & 56\\
+    1760 & 218 & 57\\
+    1770 & 204 & 59\\
+    \hline
+  \end{tabular}
+\end{table}
+\lipsum[12-15]
+% \end{verbatim}
+% \end{quote}
+
+% \DescribeMacro\backmatter
+% \DescribeMacro\bibliography
+% The |\backmatter| macro signals the end of the main text. It is
+% similar in effect to \LaTeX's |\appendix|. It should be placed
+% before any appendices and the |\bibliography|.
+% \begin{quote}
+% \begin{verbatim}
+\backmatter
+\chapter{The First Appendix}
+\lipsum[16-17]
+
+\section{First Apppendix section}
+\lipsum[18-22]
+
+\bibliography{example}
+% \end{verbatim}
+% \end{quote}
+
+% \DescribeMacro\vita
+% The Vita section is the final section of the dissertation, appearing
+% after the bibliography. Use the |\vita| macro to signal the
+% beginning of this material.
+% \begin{quote}
+% \begin{verbatim}
+\vita
+\lipsum[23-25] 
+% \end{verbatim}
+% \end{quote}
+
+% And finally, end the document environment.
+% \begin{quote}
+% \begin{verbatim}
+\end{document}
+% \end{verbatim}
+% \end{quote}
+
+% \iffalse
+%</example>
+%<*class>
+% \fi
+% \StopEventually{}
+% \section{Implementation}
+% \subsection{Initial Code}
+% 
+% Here we define some switches for use later.
+%
+% \begin{macro}{\if@endorse}
+% Switch indicating if endorsements should be printed in the front
+% matter of the thesis.
+%    \begin{macrocode}
+\newif\if@endorse
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\if@dedication}
+% Swich indicating if a dedication section has been supplied.
+%    \begin{macrocode}
+\newif\if@dedication
+\@dedicationfalse
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\if@acknowledgements}
+% Switch indicating if an acknowledgements section has been supplied.
+%    \begin{macrocode}
+\newif\if@acknowledgements
+\@acknowledgementsfalse
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\if@mainmatter}
+% Indicates whether the current location within the main matter or not.
+%    \begin{macrocode}
+\newif\if@mainmatter
+\@mainmatterfalse
+%    \end{macrocode}
+% \end{macro}
+ 
+% \subsection{Option Declarations}
+% The |endorse|/|noendorse| options enable/disable the printing of
+% names in the blank spaces available in the front matter.
+%    \begin{macrocode}
+\DeclareOption{endorse}{\@endorsetrue}
+\DeclareOption{noendorse}{\@endorsefalse}
+%    \end{macrocode}
+% The |ukydissertation| class is based on the \LaTeX{} |report| class
+% on letter paper in a 12pt font.
+%    \begin{macrocode}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
+\ExecuteOptions{noendorse, 12pt, letterpaper}
+\ProcessOptions
+\LoadClass{report}
+%    \end{macrocode}
+% Here we load a few packages to help get the page layout and style
+% set up correctly.
+%    \begin{macrocode}
+\RequirePackage[hmargin={1.5in,1in},vmargin=1in,foot=0.5in]{geometry}
+\RequirePackage[nottoc]{tocbibind}
+\RequirePackage{needspace}
+%    \end{macrocode}
+
+% \subsection{Defining Document Metadata}
+% These macros define the metadata for the dissertation document.
+% \begin{macro}{\college}
+% Use to define the name of the college granting the degree.
+%    \begin{macrocode}
+\newcommand{\college}[1]{\renewcommand{\@college}{#1}}
+\newcommand{\@college}{\@latex@warning@no@line%
+  {No \noexpand\college given} COLLEGE}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\director}
+% Define the name of the comittee chair/director (your advisor).
+%    \begin{macrocode}
+  \newcommand{\director}[1]{\renewcommand{\@director}{#1}}
+  \newcommand{\@director}{\@latex@warning@no@line%
+    {No \noexpand\director given} Advisor}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\dgs}
+% Define the director of graduate studies for your program.
+%    \begin{macrocode}
+\newcommand{\dgs}[1]{\renewcommand{\@dgs}{#1}}
+\newcommand{\@dgs}{\@latex@warning@no@line%
+  {No \noexpand\dgs given} DGS}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\department}
+% The department granting the degree.
+%    \begin{macrocode}
+\newcommand{\department}[1]{\renewcommand{\@department}{#1}}
+\newcommand{\@department}{\@latex@warning@no@line%
+  {No \noexpand\department given} DEPARTMENT}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\keywords}
+% Define five keywords for the thesis.
+%    \begin{macrocode}
+\newcommand{\keywords}[1]{\renewcommand{\@keywords}{#1}}
+\newcommand{\@keywords}{\@latex@warning@no@line%
+  {No \noexpand\keywords given}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\abstract}
+% Define the dissertatoin abstract content.
+%    \begin{macrocode}
+\renewcommand{\abstract}[1]{\renewcommand\@abstract{#1}}
+\newcommand{\@abstract}{\@latex@warning@no@line%
+  {No \noexpand\abstract given}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Document Control Macros}
+% \begin{macro}{\makefrontmatter}
+% This command replaces the |\maketitle| macro.
+%    \begin{macrocode}
+\newcommand\makefrontmatter{%
+  \maketitle \@makeabstract \@makeapproval 
+  \@makededication \@makeacknowledgements
+  \clearpage
+  \pdfbookmark[chapter]{\contentsname}{toc}
+  \tableofcontents \listoftables \listoffigures
+  \clearpage
+  \pagenumbering{arabic} \global\let\thanks\relax
+  \global\let\maketitle\relax \global\let\title\relax
+  \global\let\author\relax \global\let\date\relax
+  \global\let\and\relax \global\let\abstract\relax
+  \global\let\dedication\relax}
+%    \end{macrocode}
+% \end{macro}
+%    
+% \begin{macro}{\backmatter}
+% This macro replaces the |\appendix| macro.
+%    \begin{macrocode}
+\newcommand{\backmatter}{\@mainmatterfalse\appendix}
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\vita}
+% This macro begins the vita section of the thesis.
+%    \begin{macrocode}
+\newcommand{\vita}{\clearpage\chapter*{Vita}%
+  \addcontentsline{toc}{chapter}{Vita}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Section header definitions}
+%    \begin{macrocode}
+\renewcommand{\@makechapterhead}[1]{%
+  {\parindent \z@ \centering \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+    \bfseries \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 10\p@
+    \fi
+    \interlinepenalty\@M
+    \bfseries #1\par\nobreak
+    \vskip 20\p@
+  }}
+\renewcommand{\@makeschapterhead}[1]{%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \centering\bfseries  #1\par\nobreak
+    \vskip 20\p@
+  }}
+\renewcommand{\section}{%
+  \@startsection {section}{1}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}%
+  {2.3ex \@plus.2ex}%
+  {\normalfont\bfseries}}
+\renewcommand{\subsection}{%
+  \@startsection{subsection}{2}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\bfseries}}
+\newcommand{\@period}[1]{#1.--- }
+\renewcommand{\subsubsection}{%
+  \@startsection{subsubsection}{3}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {\z@}%
+  {\normalfont\normalsize\itshape\@period}}
+%    \end{macrocode}
+
+% \subsection{Front Matter Layouts}
+% Setup the page layouts for the title, abstract, approval,
+% dedication, acknowledgements, table of contents and list of figures/tables pages. 
+%    \begin{macrocode}
+\renewcommand\maketitle{%
+  \setcounter{page}{-1}
+  \pagestyle{empty}
+  {\let\footnotesize\small
+  \let\footnoterule\relax
+  \let\footnote\thanks
+  \null
+  \bookmark[named=FirstPage,level=-1]{Title Page}
+  \vskip 1.5in%
+  \begin{center}%  
+  \parbox[t][1.5in]{\textwidth}%
+  {\centering\MakeUppercase\@title\par}%
+  \par
+  \parbox[t][3\baselineskip]%
+  {0.5\textwidth}{\hrule\vskip\baselineskip%
+    \centering DISSERTATION%
+    \par\vskip\baselineskip\hrule}
+  \vskip\baselineskip%
+  {A dissertation submitted in partial fulfillment of the \\
+    requirements for the degree of Doctor of Philosophy in the \\
+    \@college\\ at the University of Kentucky\par}%
+  \vskip 2\baselineskip%
+    {By\par\vskip 0.5\baselineskip\@author\par}%
+    \vskip 0.5\baselineskip%
+    {Lexington, Kentucky\par}%
+    \vskip 1em%
+    {Director: Dr. \@director, Professor of \@department\par}%
+    \vskip 0.5\baselineskip%
+    {Lexington, Kentucky\par}%
+    \vfill
+    {Copyright \textcopyright\ \@author\ \the\year\par}%
+    \vspace*{1.5in}\par
+  \end{center}\par
+  \null}
+  \clearpage
+  \setcounter{footnote}{0}}
+
+\newcommand\@makeabstract{%
+  \pagestyle{empty}
+  \pagenumbering{Roman}
+  \hypertarget{abstract}{}
+\bookmark[dest=abstract,level=0]{Abstract}
+\null\vskip 1.5in
+\begin{center}%
+  \parbox[t][1in]{\textwidth}{\centering ABSTRACT OF DISSERTATION\par}
+  \MakeUppercase\@title\par
+\end{center}
+\@abstract
+\par\vspace\baselineskip\noindent 
+  KEYWORDS: \parbox[t]{0.8\textwidth}{\@keywords}
+  \par\needspace{1.5in}\null\vfill
+  \hfill\parbox[t][1.5in]{0.5\textwidth}{%
+    \if@endorse
+    {\centering\MakeUppercase\@author\par}\vskip 2pt
+    \else\fi
+    \hrule
+    \vskip 2pt
+    Student's Signature\par
+    \vfil
+    \if@endorse
+    {\centering\MakeUppercase\@date\par}\vskip 2pt
+    \else\fi
+    \hrule
+  \vskip 2pt
+  Date\par}
+  \par\null\clearpage}
+
+\newcommand\@makeapproval{
+  \pagenumbering{roman}
+  \null\vskip 2in
+  \noindent\parbox[t][1in]{\textwidth}%
+  {\centering\MakeUppercase\@title\par}\par
+  \begin{centering}
+    By
+    \vskip0.5\baselineskip
+    \@author\par
+  \end{centering}
+  \vfill 
+  \hfill\parbox[t][3in]{0.5\textwidth}{%
+    \if@endorse
+    {\centering\MakeUppercase\@director\par}\vskip 2pt
+    \else\fi
+    \hrule
+    \vskip 2pt
+    Director of Dissertation\par
+    \vfil
+    \if@endorse
+    {\centering\MakeUppercase\@dgs\par}\vskip 2pt
+    \else\fi
+    \hrule
+    \vskip 2pt
+    Director of Graduate Studies\par
+    \vfil
+    \if@endorse
+    {\centering\MakeUppercase\@date\par}\vskip 2pt
+    \else\fi
+    \hrule
+  \vskip 2pt
+  Date\par}\hskip 1in
+    \par\vfil\clearpage}
+
+\newcommand{\dedication}[1]{\@dedicationtrue
+  \newcommand{\@dedication}{#1}}
+\newcommand{\acknowledgements}[1]{\@acknowledgementstrue
+  \newcommand{\@acknowledgements}{#1}}
+
+\newcommand\@makeacknowledgements{
+  \setcounter{page}{3}
+  \pagestyle{plain}
+  \if@acknowledgements%
+  \phantomsection
+  \addcontentsline{toc}{chapter}{Acknowledgements}
+  \null
+  {\centering ACKNOWLEDGEMENTS \par}
+  \vspace{\baselineskip}\noindent
+  \@acknowledgements
+  \par\vfil\clearpage\fi}
+
+\newcommand\@makededication{%
+  \if@dedication
+\null\vfil
+  \@dedication
+  \par\vfil
+  \clearpage\fi}
+\renewcommand{\contentsname}{Table of Contents}
+%    \end{macrocode}
+%
+% \Finale
+% \iffalse
+%</class>
+% \fi

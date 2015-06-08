@@ -1,79 +1,94 @@
+%%
+%% This is file `example.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ukydissertation.dtx  (with options: `example')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2015 by Grady Weyenberg <grady.weyenberg@uky.edu>.
+%% 
+%% This file may be distributed and/or modified under the conditions of
+%% the LaTeX Project Public License, either version 1.2 of this license
+%% or (at your option) any later version.  The latest version of this
+%% license is in:
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.2 or later is part of all distributions of LaTeX version
+%% 1999/12/01 or later.
+%% 
 \documentclass[endorse]{ukydissertation}
-
-\usepackage{natbib}
+%%%[...load your packages...]%%
 \usepackage{lipsum}
-%% bookmark needs to be setup last
+\usepackage{natbib}
 \usepackage[numbered,open,openlevel=0]{bookmark}
-
 \bibliographystyle{plainnat}
+\title{On the Correlation between Piracy and Climate Change}
+\author{John Q. Doe}
+\department{Slack}
+\college{College of Theosophy}
+\director{J.R ``Bob'' Dobbs}
+\dgs{Constance M. Dobbs}
+\date{19 Prairial CCXXIII}
 
-%% Define document metadata
-\title{ukydissertation.cls\protect\\%
-  A \LaTeX\ class for typsetting a dissertation\protect\\%
-  to the formatting requirements for\protect\\%
-  the University of Kentucky}
-\author{Grady Weyenberg}
-\department{Statistics}
-\college{College of Arts and Sciences}
-\director{Jane Q. Advisor}
-\dgs{Charles Xavier}
-\keywords{THERE, ARE, FIVE, KEY, WORDS}
-\abstract{\lipsum}
-\dedication{Dedicated to things.}
-\acknowledgements{\lipsum[1]}
+\abstract{This is a example of the ukydissertation class.
+  This class for the \LaTeX{} document system \citep{latex}
+  produces a pdf file conforming to the style guidelines of
+  the \citet{ukdiss}.}
+
+\keywords{U of Kentucky, dissertation, latex, documentclass, example}
+\dedication{Dedicated to the Flying Spagetti Monster.}
 
 \begin{document}
-
-%% Generate title, abstract, TOC, etc.
 \makefrontmatter
 
 \chapter{The First Chapter}
-\label{cha:first-chapter}
-\lipsum*[1]\citep{lamport1994latex}
+\lipsum[4-10]
 
 \begin{figure}
   \centering
-  The First Figure
+  \framebox[3in][c]{The First Figure}
   \caption[A name for the ToC]{A caption for the first figure.}
   \label{fig:numberone}
 \end{figure}
-\section{The First Section}
-\label{sec:first-section}
-\lipsum[2]
-\subsection{The first subsection.}
-\label{sec:first-subsection}
-\lipsum[3]
-\subsubsection{A subsubsection}
-\lipsum[4-10]
-\chapter{The Second Chapter}
-\label{cha:second-chapter}
-\lipsum[11-15]
+
+\section{The Nature of Piracy in the 17th Century}
+\lipsum[11]
 \begin{table}
-  \caption[The first table shortname]{The First table long caption}
+  \caption[The Piracy-Temperature time series]%
+  {The time series showing the correlation between the Piracy
+    Quotient (PQ) and average global temperatures.}
   \label{tab:numberone}
   \centering
   \begin{tabular}{ccc}
     \hline
-    a&b&c\\
+    Year & PQ & Temp\\
     \hline
-    1&2&3\\
-    4&5&5\\
+    1750 & 250 & 56\\
+    1760 & 218 & 57\\
+    1770 & 204 & 59\\
     \hline
   \end{tabular}
 \end{table}
-\lipsum[16-20]
-\backmatter
+\lipsum[12-15]
 
+\backmatter
 \chapter{The First Appendix}
-\label{cha:first-appendix}
-\lipsum[21-23]
+\lipsum[16-17]
 
 \section{First Apppendix section}
-\label{sec:first-appp-sect}
-\lipsum[24-29]
+\lipsum[18-22]
 
 \bibliography{example}
 
 \vita
-\lipsum[30-33]
+\lipsum[23-25]
+
 \end{document}
+
+\endinput
+%%
+%% End of file `example.tex'.

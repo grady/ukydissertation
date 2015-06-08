@@ -4,7 +4,7 @@ ukydissertation
 LaTeX class for typesetting a dissertation for the University of
 Kentucky. Follows the official
 [UKY electronic dissertation style guide](http://www.research.uky.edu/gs/CurrentStudents/electronic_dissertation_instructions.html)
-as of Jan 2015.
+as of 2015.
 
 Place the *ukydissertation.cls* file in the same directory as your
 *tex* file and use `\documentclass{ukydissertation}`.

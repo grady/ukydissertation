@@ -62,10 +62,16 @@
 \renewcommand{\abstract}[1]{\renewcommand\@abstract{#1}}
 \newcommand{\@abstract}{\@latex@warning@no@line%
   {No \noexpand\abstract given}}
+\newcommand{\dedication}[1]{\@dedicationtrue
+  \newcommand{\@dedication}{#1}}
+\newcommand{\acknowledgements}[1]{\@acknowledgementstrue
+  \newcommand{\@acknowledgements}{#1}}
 \newcommand\makefrontmatter{%
   \maketitle \@makeabstract \@makeapproval
-  \@makededication \@makeacknowledgements
-  \clearpage
+  \if@dedication\@makededication\fi
+  \setcounter{page}{3}
+  \pagestyle{plain}
+  \if@acknowledgements\@makeacknowledgements\fi
   \pdfbookmark[chapter]{\contentsname}{toc}
   \tableofcontents \listoftables \listoffigures
   \clearpage
@@ -213,29 +219,21 @@
   Date\par}\hskip 1in
     \par\vfil\clearpage}
 
-\newcommand{\dedication}[1]{\@dedicationtrue
-  \newcommand{\@dedication}{#1}}
-\newcommand{\acknowledgements}[1]{\@acknowledgementstrue
-  \newcommand{\@acknowledgements}{#1}}
-
 \newcommand\@makeacknowledgements{
-  \setcounter{page}{3}
-  \pagestyle{plain}
-  \if@acknowledgements%
   \phantomsection
   \addcontentsline{toc}{chapter}{Acknowledgements}
   \null
   {\centering ACKNOWLEDGEMENTS \par}
   \vspace{\baselineskip}\noindent
   \@acknowledgements
-  \par\vfil\clearpage\fi}
+  \par\vfil\clearpage}
 
 \newcommand\@makededication{%
-  \if@dedication
-\null\vfil
+  \null\vfil
   \@dedication
   \par\vfil
-  \clearpage\fi}
+  \clearpage}
+
 \renewcommand{\contentsname}{Table of Contents}
 \endinput
 %%

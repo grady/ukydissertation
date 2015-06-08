@@ -20,5 +20,6 @@ and the derived files:
 To use the package, place the `ukydissertation.cls` file in the same
 directory as your source file and use `\documentclass{ukydissertation}`.
 
-The `example.tex` file contains a minimal example, suitable as a
-starting point for your own document.
+The `example.*` files contain a minimal example, suitable as a
+starting point for your own document. The macros available within the
+class are fully documented in `ukydissertation.pdf`.

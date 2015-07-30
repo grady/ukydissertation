@@ -119,7 +119,7 @@
   \let\footnoterule\relax
   \let\footnote\thanks
   \null
-  \bookmark[named=FirstPage,level=-1]{Title Page}
+  \bookmark[named=FirstPage,level=0]{Title Page}
   \vskip 1.5in%
   \begin{center}%
   \parbox[t][1.5in]{\textwidth}%

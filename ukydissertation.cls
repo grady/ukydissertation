@@ -34,6 +34,9 @@
 \newif\if@mainmatter
 \@mainmatterfalse
 
+\newif\if@hascoadvisor
+\@hascoadvisorfalse
+
 \DeclareOption{endorse}{\@endorsetrue}
 \DeclareOption{noendorse}{\@endorsefalse}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
@@ -47,9 +50,13 @@
 \newcommand{\college}[1]{\renewcommand{\@college}{#1}}
 \newcommand{\@college}{\@latex@warning@no@line%
   {No \noexpand\college given} COLLEGE}
-  \newcommand{\director}[1]{\renewcommand{\@director}{#1}}
-  \newcommand{\@director}{\@latex@warning@no@line%
+\newcommand{\director}[1]{\renewcommand{\@director}{#1}}
+\newcommand{\@director}{\@latex@warning@no@line%
     {No \noexpand\director given} Advisor}
+\newcommand{\codirector}[1]{\@hascoadvisortrue\renewcommand{\@codirector}{#1}}
+\newcommand{\@codirector}{\@latex@warning@no@line%
+    {No \noexpand\codirector given} Co-Advisor}
+
 \newcommand{\dgs}[1]{\renewcommand{\@dgs}{#1}}
 \newcommand{\@dgs}{\@latex@warning@no@line%
   {No \noexpand\dgs given} DGS}
@@ -144,7 +151,18 @@
     \vskip 0.5\baselineskip%
     {Lexington, Kentucky\par}%
     \vskip 1em%
+    \if@hascoadvisor
+    {
+    \vskip 0.5\baselineskip
+    \begin{tabular}{l c c}
+    Directors: & Dr. \@director &, Professor of \@department\par \\%
+    %\vskip 0.5\baselineskip%
+    and & Dr. \@codirector &, Professor of \@department\par%
+    \end{tabular}
+    }
+    \else
     {Director: Dr. \@director, Professor of \@department\par}%
+    \fi
     \vskip 0.5\baselineskip%
     {Lexington, Kentucky\par}%
     \vfill
@@ -197,13 +215,30 @@
   \end{centering}
   \vfill
   \hfill\parbox[t][3in]{0.5\textwidth}{%
-    \if@endorse
-    {\centering\MakeUppercase\@director\par}\vskip 2pt
-    \else\fi
-    \hrule
-    \vskip 2pt
-    Director of Dissertation\par
-    \vfil
+    \if@hascoadvisor
+      \if@endorse
+      {\centering\MakeUppercase\@director\par}\vskip 2pt
+      \else\fi
+      \hrule
+      \vskip 2pt
+      Co-Director of Dissertation\par
+      \vfil
+      \if@endorse
+      {\centering\MakeUppercase\@codirector\par}\vskip 2pt
+      \else\fi
+      \hrule
+      \vskip 2pt
+      Co-Director of Dissertation\par
+      \vfil
+    \else
+      \if@endorse
+      {\centering\MakeUppercase\@director\par}\vskip 2pt
+      \else\fi
+      \hrule
+      \vskip 2pt
+      Director of Dissertation\par
+      \vfil
+    \fi
     \if@endorse
     {\centering\MakeUppercase\@dgs\par}\vskip 2pt
     \else\fi
